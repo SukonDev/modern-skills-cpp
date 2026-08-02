@@ -1,7 +1,8 @@
 # Modern C++ Skills
 
-Focused Codex skills for writing and reviewing C++ without loading unrelated
-guidance into the context window.
+Focused Agent Skills for writing and reviewing C++ without loading unrelated
+guidance into the context window. They use the shared Agent Skills format and
+can be installed for every agent supported by the Skills CLI.
 
 ## Available skills
 
@@ -13,22 +14,66 @@ guidance into the context window.
 The Static Facade rules are intentionally separate. A routine formatting task
 therefore does not load architecture-specific instructions.
 
-## Install with Codex
+## Install with npx
 
-Ask Codex to use its built-in `skill-installer`:
+Requires Node.js 18 or later. No global package installation is required.
 
-> Use skill-installer to install `skills/modern-cpp-style` and
-> `skills/cpp-static-facade` from `SukonDev/modern-skills-cpp`.
+### All skills, all supported agents
 
-Install only the folder you need, or install both. Skills installed by
-`skill-installer` are available on the next turn.
+Install into the current project:
 
-Equivalent installer arguments are:
-
-```text
---repo SukonDev/modern-skills-cpp \
---path skills/modern-cpp-style skills/cpp-static-facade
+```bash
+npx skills add SukonDev/modern-skills-cpp --all
 ```
+
+Install globally for all supported agents:
+
+```bash
+npx skills add SukonDev/modern-skills-cpp --all -g
+```
+
+`--all` selects every skill and every agent supported by the CLI and skips
+interactive prompts.
+
+If the system does not allow symlinks, install independent copies instead:
+
+```bash
+npx skills add SukonDev/modern-skills-cpp --all --copy
+```
+
+### Select one skill
+
+Install only `modern-cpp-style` for every supported agent:
+
+```bash
+npx skills add SukonDev/modern-skills-cpp \
+  --skill modern-cpp-style --agent '*' -y
+```
+
+Replace the skill name with `cpp-static-facade` when only the facade workflow
+is needed.
+
+### Inspect or choose interactively
+
+```bash
+# List the skills without installing them
+npx skills add SukonDev/modern-skills-cpp --list
+
+# Choose skills, agents, scope, and install method interactively
+npx skills add SukonDev/modern-skills-cpp
+
+# Update installed skills later
+npx skills update
+```
+
+## Agent compatibility
+
+The skills contain standard `SKILL.md` frontmatter and do not require
+agent-specific tools. Skills CLI maps them to the correct directories for
+supported agents such as Codex, Claude Code, Cursor, OpenCode, Gemini CLI,
+GitHub Copilot, Cline, Roo Code, Amp, and others. The optional
+`agents/openai.yaml` files add OpenAI UI metadata and can be ignored by other
+agents.
 
 ## Repository layout
 
