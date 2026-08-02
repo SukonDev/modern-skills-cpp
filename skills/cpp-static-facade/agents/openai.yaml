@@ -1,0 +1,4 @@
+interface:
+  display_name: "C++ Static Facade"
+  short_description: "Convert true singletons to static facades"
+  default_prompt: "Use $cpp-static-facade to assess and convert this singleton manager to a static facade."

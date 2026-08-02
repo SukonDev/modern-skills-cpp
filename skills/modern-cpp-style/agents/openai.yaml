@@ -1,0 +1,4 @@
+interface:
+  display_name: "Modern C++ Style"
+  short_description: "Write and review clean, behavior-safe C++"
+  default_prompt: "Use $modern-cpp-style to clean up this C++ code without changing its behavior."
