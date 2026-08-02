@@ -18,36 +18,44 @@ therefore does not load architecture-specific instructions.
 
 Requires Node.js 18 or later. No global package installation is required.
 
-### All skills, all supported agents
+### Install for the active agent
 
-Install into the current project:
-
-```bash
-npx skills add SukonDev/modern-skills-cpp --all
-```
-
-Install globally for all supported agents:
+Let Skills CLI detect the current AI agent and install both skills into that
+agent's project folder:
 
 ```bash
-npx skills add SukonDev/modern-skills-cpp --all -g
+npx skills add SukonDev/modern-skills-cpp -y
 ```
 
-`--all` selects every skill and every agent supported by the CLI and skips
-interactive prompts.
+For example, Codex is installed under `.agents/skills/` at project scope.
+Other agents use their own supported skill folder.
+
+To target an agent explicitly:
+
+```bash
+npx skills add SukonDev/modern-skills-cpp \
+  --skill '*' --agent codex -y
+```
+
+Replace `codex` with an agent ID such as `claude-code`, `cursor`, `opencode`,
+or `gemini-cli`.
+
+> Do not use `--all` for a normal installation. It means all skills **and all
+> supported agents**, so it intentionally creates many agent folders.
 
 If the system does not allow symlinks, install independent copies instead:
 
 ```bash
-npx skills add SukonDev/modern-skills-cpp --all --copy
+npx skills add SukonDev/modern-skills-cpp -y --copy
 ```
 
 ### Select one skill
 
-Install only `modern-cpp-style` for every supported agent:
+Install only `modern-cpp-style` for the detected agent:
 
 ```bash
 npx skills add SukonDev/modern-skills-cpp \
-  --skill modern-cpp-style --agent '*' -y
+  --skill modern-cpp-style -y
 ```
 
 Replace the skill name with `cpp-static-facade` when only the facade workflow
